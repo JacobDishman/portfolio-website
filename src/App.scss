@@ -40,16 +40,71 @@ body {
   }
 }
 
-// Fixed header section
+// Compact header section with navigation
 .header-section {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 0, 110, 0.3);
-  padding: 30px 20px 20px;
+  padding: 15px 20px;
   margin-bottom: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-title {
+  font-family: 'Syncopate', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #ff006e;
+  text-shadow: 
+    0 0 10px #ff006e,
+    0 0 20px #ff006e;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+.navigation {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-tab {
+  background: none;
+  border: 2px solid rgba(0, 245, 255, 0.4);
+  color: #00f5ff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(0, 245, 255, 0.5);
+  
+  &:hover {
+    border-color: #00f5ff;
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  &.active {
+    background: linear-gradient(45deg, #ff006e, #8338ec);
+    border-color: #ff006e;
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+    text-shadow: none;
+  }
 }
 
 .content-section {
@@ -71,104 +126,25 @@ body {
   max-width: 1200px;
 }
 
-.wurtz-title {
-  font-family: 'Syncopate', sans-serif;
-  font-size: clamp(3rem, 8vw, 8rem);
-  font-weight: 700;
-  color: #ff006e;
-  text-shadow: 
-    0 0 10px #ff006e,
-    0 0 20px #ff006e,
-    0 0 30px #8338ec,
-    3px 3px 0px #000,
-    6px 6px 0px rgba(0,0,0,0.5);
-  margin-bottom: 20px;
-  animation: neonPulse 3s ease-in-out infinite alternate;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-@keyframes neonPulse {
-  0% {
-    text-shadow: 
-      0 0 10px #ff006e,
-      0 0 20px #ff006e,
-      0 0 30px #8338ec,
-      3px 3px 0px #000,
-      6px 6px 0px rgba(0,0,0,0.5);
-    transform: scale(1);
+// Responsive navigation
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
   }
-  100% {
-    text-shadow: 
-      0 0 20px #ff006e,
-      0 0 40px #ff006e,
-      0 0 60px #8338ec,
-      0 0 80px #3a86ff,
-      3px 3px 0px #000,
-      6px 6px 0px rgba(0,0,0,0.5);
-    transform: scale(1.02);
+  
+  .navigation {
+    gap: 15px;
   }
-}
-
-.wurtz-subtitle {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
-  font-weight: 400;
-  color: #00f5ff;
-  text-shadow: 
-    0 0 10px #00f5ff,
-    0 0 20px #00f5ff,
-    2px 2px 0px #000;
-  margin-bottom: 30px;
-  animation: retroGlow 4s ease-in-out infinite;
-  letter-spacing: 0.05em;
-}
-
-@keyframes retroGlow {
-  0%, 100% {
-    text-shadow: 
-      0 0 10px #00f5ff,
-      0 0 20px #00f5ff,
-      2px 2px 0px #000;
-    transform: translateY(0px);
+  
+  .nav-tab {
+    font-size: 11px;
+    padding: 6px 12px;
   }
-  50% {
-    text-shadow: 
-      0 0 20px #00f5ff,
-      0 0 30px #00f5ff,
-      0 0 40px #8338ec,
-      2px 2px 0px #000;
-    transform: translateY(-5px);
-  }
-}
-
-.floating-text {
-  font-family: 'Orbitron', monospace;
-  font-size: clamp(0.8rem, 2vw, 1.5rem);
-  color: #ff10f0;
-  text-shadow: 
-    0 0 10px #ff10f0,
-    1px 1px 0px #000;
-  animation: vaporFloat 5s ease-in-out infinite;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-}
-
-@keyframes vaporFloat {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-    opacity: 0.8;
-    text-shadow: 
-      0 0 10px #ff10f0,
-      1px 1px 0px #000;
-  }
-  50% {
-    transform: translateY(-15px) scale(1.05);
-    opacity: 1;
-    text-shadow: 
-      0 0 20px #ff10f0,
-      0 0 30px #ff10f0,
-      1px 1px 0px #000;
+  
+  .site-title {
+    font-size: clamp(1rem, 4vw, 1.4rem);
   }
 }
 
@@ -208,13 +184,14 @@ body {
   pointer-events: none;
 }
 
+// Multiple geometric shapes for enhanced background
 .App::after {
   content: '';
-  position: absolute;
+  position: fixed;
   width: 200px;
   height: 200px;
-  top: 10%;
-  right: 10%;
+  top: 15%;
+  right: 8%;
   border: 2px solid #00f5ff;
   border-radius: 50%;
   box-shadow: 
@@ -222,6 +199,122 @@ body {
     inset 0 0 20px rgba(0, 245, 255, 0.1);
   animation: orbitalMotion 15s linear infinite;
   z-index: 1;
+  pointer-events: none;
+}
+
+// Additional geometric shapes
+.content-section::after {
+  content: '';
+  position: fixed;
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 5%;
+  border: 2px solid #ff006e;
+  transform: rotate(45deg);
+  box-shadow: 
+    0 0 15px #ff006e,
+    inset 0 0 15px rgba(255, 0, 110, 0.1);
+  animation: floatRotate 20s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.header-section::after {
+  content: '';
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  top: 25%;
+  left: 12%;
+  border: 2px solid #8338ec;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 12px #8338ec,
+    inset 0 0 12px rgba(131, 56, 236, 0.1);
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+// Triangular shape
+.App {
+  &::before {
+    // Keep existing grid
+  }
+}
+
+.geometric-shape-1 {
+  position: fixed;
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid rgba(255, 16, 240, 0.3);
+  top: 60%;
+  right: 15%;
+  animation: triangleFloat 12s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px #ff10f0);
+}
+
+.geometric-shape-2 {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, transparent, transparent, rgba(0, 245, 255, 0.2));
+  border: 2px solid #00f5ff;
+  transform: rotate(30deg);
+  bottom: 10%;
+  right: 25%;
+  animation: shapeRotate 18s linear infinite reverse;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.geometric-shape-3 {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 165, 0, 0.2);
+  border: 2px solid #ffa500;
+  border-radius: 15px;
+  top: 45%;
+  left: 8%;
+  animation: diamondPulse 10s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  transform: rotate(45deg);
+}
+
+.geometric-shape-4 {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #ff006e;
+  border-radius: 50%;
+  border-style: dashed;
+  bottom: 35%;
+  left: 15%;
+  animation: dashRotate 25s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.geometric-shape-5 {
+  position: fixed;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, rgba(131, 56, 236, 0.1), rgba(255, 0, 110, 0.1));
+  border: 1px solid #8338ec;
+  top: 70%;
+  left: 25%;
+  animation: morphing 14s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 @keyframes gridPulse {
@@ -285,6 +378,90 @@ body {
   }
   100% {
     transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+// New shape animations
+@keyframes floatRotate {
+  0%, 100% {
+    transform: rotate(45deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(135deg) translateY(-15px);
+  }
+}
+
+@keyframes triangleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes shapeRotate {
+  0% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(390deg);
+  }
+}
+
+@keyframes diamondPulse {
+  0%, 100% {
+    transform: rotate(45deg) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: rotate(45deg) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dashRotate {
+  0% {
+    transform: rotate(0deg);
+    border-color: #ff006e;
+  }
+  33% {
+    border-color: #00f5ff;
+  }
+  66% {
+    border-color: #8338ec;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-color: #ff006e;
+  }
+}
+
+@keyframes morphing {
+  0%, 100% {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(0deg);
+  }
+  33% {
+    clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+    transform: rotate(120deg);
+  }
+  66% {
+    clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
+    transform: rotate(240deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
   }
 }
 
