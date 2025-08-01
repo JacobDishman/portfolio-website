@@ -92,6 +92,49 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+  margin-bottom: 10px;
+}
+
+.education-item, .experience-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid #00f5ff;
+}
+
+.edu-school, .exp-title {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 16px;
+  color: #ff006e;
+  text-shadow: 0 0 8px #ff006e;
+  margin: 0 0 5px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.edu-degree, .exp-company {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  color: #00f5ff;
+  text-shadow: 0 0 5px #00f5ff;
+  margin: 0 0 3px 0;
+  font-weight: 600;
+}
+
+.edu-location, .exp-duration, .exp-location {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 3px 0;
+}
+
+.edu-details {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 2px 0;
+  line-height: 1.4;
 }
 
 .skills-grid {
