@@ -8,7 +8,8 @@
 
 .projects-container {
   background: var(--bg-primary);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 2px solid var(--border-glow-1);
   border-radius: 20px;
   padding: 40px;
@@ -18,6 +19,8 @@
     0 0 100px var(--border-glow-3);
   position: relative;
   text-align: center;
+  will-change: transform;
+  transform: translateZ(0);
   
   &::before {
     content: '';
@@ -36,7 +39,7 @@
     animation: constructionGlow 6s ease infinite;
     border-radius: 20px;
     z-index: -1;
-    filter: blur(8px);
+    filter: blur(6px);
   }
 }
 

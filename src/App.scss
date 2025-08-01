@@ -161,6 +161,8 @@ input:checked + .toggle-slider {
   flex-direction: column;
   position: relative;
   padding-bottom: 50px;
+  will-change: scroll-position;
+  transform: translateZ(0);
 }
 
 @keyframes vaporwaveGradient {
@@ -178,16 +180,19 @@ input:checked + .toggle-slider {
   }
 }
 
-// Compact header section with navigation
+// Compact header section with navigation - fix scrolling glitch
 .header-section {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 0, 110, 0.3);
   padding: 15px 20px;
   margin-bottom: 0;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .header-content {
