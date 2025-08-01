@@ -13,6 +13,144 @@ body {
   overflow-x: hidden;
 }
 
+// CSS Variables for theming
+:root {
+  // Primary neon colors
+  --primary-pink: #ff006e;
+  --primary-cyan: #00f5ff;
+  --primary-purple: #8338ec;
+  --primary-magenta: #ff10f0;
+  --primary-orange: #ffa500;
+  --primary-blue: #3a86ff;
+  
+  // Gradient colors
+  --gradient-1: rgba(255, 0, 110, 0.8);
+  --gradient-2: rgba(0, 245, 255, 0.8);
+  --gradient-3: rgba(131, 56, 236, 0.8);
+  --gradient-4: rgba(255, 16, 240, 0.8);
+  
+  // Background and borders
+  --bg-primary: rgba(0, 0, 0, 0.6);
+  --bg-secondary: rgba(0, 0, 0, 0.4);
+  --bg-tertiary: rgba(0, 0, 0, 0.7);
+  --border-glow-1: rgba(255, 0, 110, 0.4);
+  --border-glow-2: rgba(0, 245, 255, 0.4);
+  --border-glow-3: rgba(131, 56, 236, 0.4);
+  
+  // Text colors
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-accent: #00f5ff;
+}
+
+// Monochrome theme overrides
+.App.monochrome {
+  // Primary neon colors -> grayscale
+  --primary-pink: #ffffff;
+  --primary-cyan: #e0e0e0;
+  --primary-purple: #c0c0c0;
+  --primary-magenta: #ffffff;
+  --primary-orange: #d0d0d0;
+  --primary-blue: #b0b0b0;
+  
+  // Gradient colors -> grayscale
+  --gradient-1: rgba(255, 255, 255, 0.8);
+  --gradient-2: rgba(224, 224, 224, 0.8);
+  --gradient-3: rgba(192, 192, 192, 0.8);
+  --gradient-4: rgba(255, 255, 255, 0.8);
+  
+  // Background and borders stay similar for contrast
+  --bg-primary: rgba(0, 0, 0, 0.6);
+  --bg-secondary: rgba(0, 0, 0, 0.4);
+  --bg-tertiary: rgba(0, 0, 0, 0.7);
+  --border-glow-1: rgba(255, 255, 255, 0.4);
+  --border-glow-2: rgba(224, 224, 224, 0.4);
+  --border-glow-3: rgba(192, 192, 192, 0.4);
+  
+  // Text colors remain readable
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-accent: #e0e0e0;
+  
+  // Override background gradient to monochrome
+  background: linear-gradient(135deg, #000000, #1a1a1a, #0d0d0d, #1b1b1b, #2a2a2a, #1e1e1e, #0f0f0f);
+}
+
+// Toggle switch styling
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--primary-cyan);
+  border-radius: 26px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+
+  &::before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background: var(--primary-cyan);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--primary-cyan);
+  }
+}
+
+input:checked + .toggle-slider {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 110, 0.4);
+  
+  &::before {
+    transform: translateX(24px);
+    background: var(--primary-pink);
+    box-shadow: 0 0 10px var(--primary-pink);
+  }
+}
+
+.toggle-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-cyan);
+  text-shadow: 0 0 5px var(--primary-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .App {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0014, #1a0033, #0d1b2a, #1b263b, #2a1454, #1e0a3e, #0f0820);
@@ -63,10 +201,10 @@ body {
 .site-title {
   font-family: 'Syncopate', sans-serif;
   font-size: clamp(1.2rem, 3vw, 1.8rem);
-  color: #ff006e;
+  color: var(--primary-pink);
   text-shadow: 
-    0 0 10px #ff006e,
-    0 0 20px #ff006e;
+    0 0 10px var(--primary-pink),
+    0 0 20px var(--primary-pink);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin: 0;
@@ -79,8 +217,8 @@ body {
 
 .nav-tab {
   background: none;
-  border: 2px solid rgba(0, 245, 255, 0.4);
-  color: #00f5ff;
+  border: 2px solid var(--border-glow-2);
+  color: var(--primary-cyan);
   padding: 8px 16px;
   border-radius: 20px;
   font-family: 'Orbitron', monospace;
@@ -90,19 +228,19 @@ body {
   letter-spacing: 0.05em;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-shadow: 0 0 5px rgba(0, 245, 255, 0.5);
+  text-shadow: 0 0 5px var(--primary-cyan);
   
   &:hover {
-    border-color: #00f5ff;
-    box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+    border-color: var(--primary-cyan);
+    box-shadow: 0 0 15px var(--border-glow-2);
     transform: translateY(-2px);
   }
   
   &.active {
-    background: linear-gradient(45deg, #ff006e, #8338ec);
-    border-color: #ff006e;
+    background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple));
+    border-color: var(--primary-pink);
     color: white;
-    box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+    box-shadow: 0 0 20px var(--border-glow-1);
     text-shadow: none;
   }
 }
@@ -192,11 +330,11 @@ body {
   height: 200px;
   top: 15%;
   right: 8%;
-  border: 2px solid #00f5ff;
+  border: 2px solid var(--primary-cyan);
   border-radius: 50%;
   box-shadow: 
-    0 0 20px #00f5ff,
-    inset 0 0 20px rgba(0, 245, 255, 0.1);
+    0 0 20px var(--primary-cyan),
+    inset 0 0 20px var(--border-glow-2);
   animation: orbitalMotion 15s linear infinite;
   z-index: 1;
   pointer-events: none;
@@ -210,11 +348,11 @@ body {
   height: 120px;
   bottom: 20%;
   left: 5%;
-  border: 2px solid #ff006e;
+  border: 2px solid var(--primary-pink);
   transform: rotate(45deg);
   box-shadow: 
-    0 0 15px #ff006e,
-    inset 0 0 15px rgba(255, 0, 110, 0.1);
+    0 0 15px var(--primary-pink),
+    inset 0 0 15px var(--border-glow-1);
   animation: floatRotate 20s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
@@ -227,11 +365,11 @@ body {
   height: 80px;
   top: 25%;
   left: 12%;
-  border: 2px solid #8338ec;
+  border: 2px solid var(--primary-purple);
   border-radius: 50%;
   box-shadow: 
-    0 0 12px #8338ec,
-    inset 0 0 12px rgba(131, 56, 236, 0.1);
+    0 0 12px var(--primary-purple),
+    inset 0 0 12px var(--border-glow-3);
   animation: pulse 8s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
@@ -250,21 +388,21 @@ body {
   height: 0;
   border-left: 40px solid transparent;
   border-right: 40px solid transparent;
-  border-bottom: 70px solid rgba(255, 16, 240, 0.3);
+  border-bottom: 70px solid var(--gradient-4);
   top: 60%;
   right: 15%;
   animation: triangleFloat 12s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
-  filter: drop-shadow(0 0 10px #ff10f0);
+  filter: drop-shadow(0 0 10px var(--primary-magenta));
 }
 
 .geometric-shape-2 {
   position: fixed;
   width: 100px;
   height: 100px;
-  background: linear-gradient(45deg, transparent, transparent, rgba(0, 245, 255, 0.2));
-  border: 2px solid #00f5ff;
+  background: linear-gradient(45deg, transparent, transparent, var(--border-glow-2));
+  border: 2px solid var(--primary-cyan);
   transform: rotate(30deg);
   bottom: 10%;
   right: 25%;
@@ -277,8 +415,8 @@ body {
   position: fixed;
   width: 60px;
   height: 60px;
-  background: rgba(255, 165, 0, 0.2);
-  border: 2px solid #ffa500;
+  background: var(--border-glow-1);
+  border: 2px solid var(--primary-orange);
   border-radius: 15px;
   top: 45%;
   left: 8%;
@@ -292,7 +430,7 @@ body {
   position: fixed;
   width: 150px;
   height: 150px;
-  border: 2px solid #ff006e;
+  border: 2px solid var(--primary-pink);
   border-radius: 50%;
   border-style: dashed;
   bottom: 35%;
@@ -307,8 +445,8 @@ body {
   position: fixed;
   width: 90px;
   height: 90px;
-  background: linear-gradient(135deg, rgba(131, 56, 236, 0.1), rgba(255, 0, 110, 0.1));
-  border: 1px solid #8338ec;
+  background: linear-gradient(135deg, var(--border-glow-3), var(--border-glow-1));
+  border: 1px solid var(--primary-purple);
   top: 70%;
   left: 25%;
   animation: morphing 14s ease-in-out infinite;
@@ -330,19 +468,19 @@ body {
   0% {
     transform: rotate(0deg) translateX(30px) rotate(0deg);
     box-shadow: 
-      0 0 20px #00f5ff,
-      inset 0 0 20px rgba(0, 245, 255, 0.1);
+      0 0 20px var(--primary-cyan),
+      inset 0 0 20px var(--border-glow-2);
   }
   50% {
     box-shadow: 
-      0 0 40px #ff006e,
-      inset 0 0 40px rgba(255, 0, 110, 0.2);
+      0 0 40px var(--primary-pink),
+      inset 0 0 40px var(--border-glow-1);
   }
   100% {
     transform: rotate(360deg) translateX(30px) rotate(-360deg);
     box-shadow: 
-      0 0 20px #00f5ff,
-      inset 0 0 20px rgba(0, 245, 255, 0.1);
+      0 0 20px var(--primary-cyan),
+      inset 0 0 20px var(--border-glow-2);
   }
 }
 
@@ -358,12 +496,12 @@ body {
   background: linear-gradient(
     to bottom,
     transparent 45%,
-    #ff006e 45%,
-    #ff006e 47%,
+    var(--primary-pink) 45%,
+    var(--primary-pink) 47%,
     transparent 47%,
     transparent 53%,
-    #8338ec 53%,
-    #8338ec 55%,
+    var(--primary-purple) 53%,
+    var(--primary-purple) 55%,
     transparent 55%
   );
   border-radius: 50%;
@@ -425,17 +563,17 @@ body {
 @keyframes dashRotate {
   0% {
     transform: rotate(0deg);
-    border-color: #ff006e;
+    border-color: var(--primary-pink);
   }
   33% {
-    border-color: #00f5ff;
+    border-color: var(--primary-cyan);
   }
   66% {
-    border-color: #8338ec;
+    border-color: var(--primary-purple);
   }
   100% {
     transform: rotate(360deg);
-    border-color: #ff006e;
+    border-color: var(--primary-pink);
   }
 }
 

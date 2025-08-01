@@ -7,15 +7,15 @@
 }
 
 .guestbook-container {
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--bg-primary);
   backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 0, 110, 0.4);
+  border: 2px solid var(--border-glow-1);
   border-radius: 20px;
   padding: 35px;
   box-shadow: 
-    0 0 40px rgba(255, 0, 110, 0.3),
-    inset 0 0 40px rgba(0, 245, 255, 0.1),
-    0 0 100px rgba(131, 56, 236, 0.2);
+    0 0 40px var(--border-glow-1),
+    inset 0 0 40px var(--border-glow-2),
+    0 0 100px var(--border-glow-3);
   position: relative;
   
   &::before {
@@ -26,10 +26,10 @@
     right: -2px;
     bottom: -2px;
     background: linear-gradient(45deg, 
-      rgba(255, 0, 110, 0.8), 
-      rgba(0, 245, 255, 0.8), 
-      rgba(131, 56, 236, 0.8), 
-      rgba(255, 16, 240, 0.8)
+      var(--gradient-1), 
+      var(--gradient-2), 
+      var(--gradient-3), 
+      var(--gradient-4)
     );
     background-size: 400% 400%;
     animation: borderGlow 8s ease infinite;
@@ -51,11 +51,11 @@
 .guestbook-title {
   font-family: 'Syncopate', sans-serif;
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #ff006e;
+  color: var(--primary-pink);
   text-shadow: 
-    0 0 10px #ff006e,
-    0 0 20px #ff006e,
-    0 0 30px #8338ec;
+    0 0 10px var(--primary-pink),
+    0 0 20px var(--primary-pink),
+    0 0 30px var(--primary-purple);
   text-align: center;
   margin-bottom: 25px;
   text-transform: uppercase;
@@ -66,16 +66,16 @@
 @keyframes titlePulse {
   0%, 100% {
     text-shadow: 
-      0 0 10px #ff006e,
-      0 0 20px #ff006e,
-      0 0 30px #8338ec;
+      0 0 10px var(--primary-pink),
+      0 0 20px var(--primary-pink),
+      0 0 30px var(--primary-purple);
   }
   50% {
     text-shadow: 
-      0 0 20px #ff006e,
-      0 0 30px #ff006e,
-      0 0 40px #8338ec,
-      0 0 50px #3a86ff;
+      0 0 20px var(--primary-pink),
+      0 0 30px var(--primary-pink),
+      0 0 40px var(--primary-purple),
+      0 0 50px var(--primary-blue);
   }
 }
 
@@ -90,32 +90,32 @@
 .neon-input,
 .neon-textarea {
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  border: 2px solid #00f5ff;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--primary-cyan);
   border-radius: 10px;
   padding: 14px 18px;
   font-family: 'Orbitron', monospace;
   font-size: 14px;
-  color: #00f5ff;
+  color: var(--primary-cyan);
   box-shadow: 
-    0 0 15px rgba(0, 245, 255, 0.4),
-    inset 0 0 15px rgba(0, 245, 255, 0.1);
+    0 0 15px var(--border-glow-2),
+    inset 0 0 15px var(--border-glow-2);
   transition: all 0.4s ease;
   position: relative;
 
   &::placeholder {
-    color: rgba(0, 245, 255, 0.5);
+    color: var(--border-glow-2);
     text-transform: lowercase;
   }
 
   &:focus {
     outline: none;
-    border-color: #ff006e;
+    border-color: var(--primary-pink);
     box-shadow: 
-      0 0 25px rgba(255, 0, 110, 0.6),
-      inset 0 0 25px rgba(255, 0, 110, 0.1),
-      0 0 50px rgba(131, 56, 236, 0.3);
-    color: #ff10f0;
+      0 0 25px var(--border-glow-1),
+      inset 0 0 25px var(--border-glow-1),
+      0 0 50px var(--border-glow-3);
+    color: var(--primary-magenta);
     transform: scale(1.02);
   }
 }
@@ -127,7 +127,7 @@
 
 .neon-button {
   width: 100%;
-  background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff);
+  background: linear-gradient(45deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
   background-size: 200% 200%;
   border: none;
   border-radius: 12px;
@@ -140,7 +140,7 @@
   letter-spacing: 0.1em;
   cursor: pointer;
   box-shadow: 
-    0 0 25px rgba(255, 0, 110, 0.5),
+    0 0 25px var(--border-glow-1),
     0 6px 20px rgba(0, 0, 0, 0.4),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
@@ -164,7 +164,7 @@
   &:hover:not(:disabled) {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 
-      0 0 35px rgba(255, 0, 110, 0.7),
+      0 0 35px var(--border-glow-1),
       0 8px 25px rgba(0, 0, 0, 0.5),
       inset 0 0 30px rgba(255, 255, 255, 0.2);
     background-position: 100% 0%;
@@ -208,6 +208,36 @@
   box-shadow: 0 0 15px rgba(255, 0, 64, 0.4);
 }
 
+.scott-link {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 0, 64, 0.3);
+}
+
+.hymn-link {
+  color: var(--primary-cyan);
+  text-decoration: none;
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 8px var(--primary-cyan);
+  transition: all 0.3s ease;
+  display: inline-block;
+  
+  &:hover {
+    color: var(--primary-pink);
+    text-shadow: 0 0 12px var(--primary-pink);
+    transform: translateY(-1px);
+  }
+  
+  &:visited {
+    color: var(--primary-purple);
+    text-shadow: 0 0 8px var(--primary-purple);
+  }
+}
+
 .entries-section {
   border-top: 2px solid rgba(0, 245, 255, 0.3);
   padding-top: 35px;
@@ -216,10 +246,10 @@
 .entries-title {
   font-family: 'Syncopate', sans-serif;
   font-size: clamp(1rem, 3vw, 1.5rem);
-  color: #00f5ff;
+  color: var(--primary-cyan);
   text-shadow: 
-    0 0 10px #00f5ff,
-    0 0 20px #00f5ff;
+    0 0 10px var(--primary-cyan),
+    0 0 20px var(--primary-cyan);
   text-align: center;
   margin-bottom: 25px;
   text-transform: uppercase;
@@ -230,14 +260,14 @@
 @keyframes subtitleGlow {
   0%, 100% {
     text-shadow: 
-      0 0 10px #00f5ff,
-      0 0 20px #00f5ff;
+      0 0 10px var(--primary-cyan),
+      0 0 20px var(--primary-cyan);
   }
   50% {
     text-shadow: 
-      0 0 20px #00f5ff,
-      0 0 30px #00f5ff,
-      0 0 40px #8338ec;
+      0 0 20px var(--primary-cyan),
+      0 0 30px var(--primary-cyan),
+      0 0 40px var(--primary-purple);
   }
 }
 
@@ -277,8 +307,8 @@
 }
 
 .entry {
-  background: rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(0, 245, 255, 0.3);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-glow-2);
   border-radius: 12px;
   padding: 18px;
   margin-bottom: 18px;
@@ -294,9 +324,9 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(135deg, 
-      rgba(255, 0, 110, 0.1), 
-      rgba(0, 245, 255, 0.05), 
-      rgba(131, 56, 236, 0.08)
+      var(--border-glow-1), 
+      var(--border-glow-2), 
+      var(--border-glow-3)
     );
     border-radius: 12px;
     opacity: 0;
@@ -305,10 +335,10 @@
   }
 
   &:hover {
-    border-color: rgba(255, 0, 110, 0.6);
+    border-color: var(--border-glow-1);
     box-shadow: 
-      0 0 25px rgba(255, 0, 110, 0.3),
-      inset 0 0 15px rgba(0, 245, 255, 0.1);
+      0 0 25px var(--border-glow-1),
+      inset 0 0 15px var(--border-glow-2);
     transform: translateY(-2px);
     
     &::before {
@@ -327,27 +357,27 @@
 .entry-name {
   font-family: 'Orbitron', monospace;
   font-weight: 700;
-  color: #ff10f0;
+  color: var(--primary-magenta);
   text-shadow: 
-    0 0 8px #ff10f0,
-    0 0 15px #ff10f0;
+    0 0 8px var(--primary-magenta),
+    0 0 15px var(--primary-magenta);
   font-size: 15px;
 }
 
 .entry-date {
   font-family: 'Orbitron', monospace;
   font-size: 11px;
-  color: rgba(0, 245, 255, 0.7);
-  text-shadow: 0 0 5px rgba(0, 245, 255, 0.3);
+  color: var(--text-secondary);
+  text-shadow: 0 0 5px var(--border-glow-2);
 }
 
 .entry-message {
   font-family: 'Orbitron', monospace;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
   line-height: 1.5;
   padding-left: 12px;
-  border-left: 3px solid rgba(0, 245, 255, 0.4);
+  border-left: 3px solid var(--border-glow-2);
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
 }
 

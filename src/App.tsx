@@ -8,6 +8,7 @@ type TabType = 'about' | 'projects' | 'guestbook';
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabType>('about');
+  const [isMonochrome, setIsMonochrome] = useState(false);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -23,7 +24,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={`App ${isMonochrome ? 'monochrome' : ''}`}>
       {/* Geometric shapes */}
       <div className="geometric-shape-1"></div>
       <div className="geometric-shape-2"></div>
@@ -34,26 +35,39 @@ function App() {
       <div className="header-section">
         <div className="header-content">
           <h1 className="site-title">jacob dishman</h1>
-          <nav className="navigation">
-            <button 
-              className={`nav-tab ${activeTab === 'about' ? 'active' : ''}`}
-              onClick={() => setActiveTab('about')}
-            >
-              about me
-            </button>
-            <button 
-              className={`nav-tab ${activeTab === 'projects' ? 'active' : ''}`}
-              onClick={() => setActiveTab('projects')}
-            >
-              projects
-            </button>
-            <button 
-              className={`nav-tab ${activeTab === 'guestbook' ? 'active' : ''}`}
-              onClick={() => setActiveTab('guestbook')}
-            >
-              guestbook
-            </button>
-          </nav>
+          <div className="header-controls">
+            <nav className="navigation">
+              <button 
+                className={`nav-tab ${activeTab === 'about' ? 'active' : ''}`}
+                onClick={() => setActiveTab('about')}
+              >
+                about me
+              </button>
+              <button 
+                className={`nav-tab ${activeTab === 'projects' ? 'active' : ''}`}
+                onClick={() => setActiveTab('projects')}
+              >
+                projects
+              </button>
+              <button 
+                className={`nav-tab ${activeTab === 'guestbook' ? 'active' : ''}`}
+                onClick={() => setActiveTab('guestbook')}
+              >
+                guestbook
+              </button>
+            </nav>
+            <div className="theme-toggle">
+              <label className="toggle-switch">
+                <input 
+                  type="checkbox" 
+                  checked={isMonochrome}
+                  onChange={(e) => setIsMonochrome(e.target.checked)}
+                />
+                <span className="toggle-slider"></span>
+              </label>
+              <span className="toggle-label">mono</span>
+            </div>
+          </div>
         </div>
       </div>
       

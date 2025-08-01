@@ -8,12 +8,18 @@ interface GuestbookEntry {
   created_at: string;
 }
 
+interface ErrorResponse {
+  message: string;
+  link?: string;
+  isScott?: boolean;
+}
+
 const Guestbook: React.FC = () => {
   const [entries, setEntries] = useState<GuestbookEntry[]>([]);
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ErrorResponse | null>(null);
 
   const fetchEntries = async () => {
     try {
@@ -44,14 +50,32 @@ const Guestbook: React.FC = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to add entry');
+        
+        // Handle Scott-specific error with link
+        if (errorData.isScott && errorData.link) {
+          setError({
+            message: errorData.error,
+            link: errorData.link,
+            isScott: true
+          });
+        } else {
+          // Handle regular inappropriate content error
+          setError({
+            message: errorData.error || 'Failed to add entry',
+            isScott: false
+          });
+        }
+        return;
       }
 
       setName('');
       setMessage('');
       await fetchEntries();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError({
+        message: err instanceof Error ? err.message : 'An error occurred',
+        isScott: false
+      });
     } finally {
       setLoading(false);
     }
@@ -100,7 +124,18 @@ const Guestbook: React.FC = () => {
             />
           </div>
           
-          {error && <div className="error-message">{error}</div>}
+          {error && (
+            <div className="error-message">
+              {error.message}
+              {error.isScott && error.link && (
+                <div className="scott-link">
+                  <a href={error.link} target="_blank" rel="noopener noreferrer" className="hymn-link">
+                    Listen to "If the Savior Stood Beside Me"
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
           
           <button type="submit" disabled={loading || !name.trim()} className="neon-button">
             {loading ? 'signing...' : 'sign guestbook'}
