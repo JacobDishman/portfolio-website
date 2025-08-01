@@ -13,14 +13,15 @@ body {
 
 .App {
   height: 100vh;
-  background: linear-gradient(135deg, #1a0033, #330066, #0f3460, #005c69, #ff006e, #8338ec, #3a86ff);
+  background: linear-gradient(135deg, #0a0014, #1a0033, #0d1b2a, #1b263b, #2a1454, #1e0a3e, #0f0820);
   background-size: 400% 400%;
-  animation: vaporwaveGradient 20s ease infinite;
+  animation: vaporwaveGradient 25s ease infinite;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @keyframes vaporwaveGradient {
@@ -145,7 +146,7 @@ body {
   }
 }
 
-// Vaporwave grid and geometric elements
+// Dark vaporwave grid with subtle neon
 .App::before {
   content: '';
   position: absolute;
@@ -154,10 +155,12 @@ body {
   right: 0;
   bottom: 0;
   background-image: 
-    linear-gradient(rgba(255, 0, 110, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 110, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridPulse 8s ease-in-out infinite;
+    linear-gradient(rgba(255, 0, 110, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 110, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(0, 245, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 255, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+  animation: gridPulse 12s ease-in-out infinite;
   z-index: 1;
 }
 
