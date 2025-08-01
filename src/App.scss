@@ -8,20 +8,21 @@
 
 body {
   font-family: 'Orbitron', monospace;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .App {
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #0a0014, #1a0033, #0d1b2a, #1b263b, #2a1454, #1e0a3e, #0f0820);
   background-size: 400% 400%;
+  background-attachment: fixed;
   animation: vaporwaveGradient 25s ease infinite;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
+  padding-bottom: 50px;
 }
 
 @keyframes vaporwaveGradient {
@@ -39,10 +40,35 @@ body {
   }
 }
 
+// Fixed header section
+.header-section {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 0, 110, 0.3);
+  padding: 30px 20px 20px;
+  margin-bottom: 0;
+}
+
+.content-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 2;
+}
+
 .wurtz-container {
   text-align: center;
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .wurtz-title {
@@ -146,10 +172,10 @@ body {
   }
 }
 
-// Dark vaporwave grid with subtle neon
+// Dark vaporwave grid with subtle neon - covers full scrollable area
 .App::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -161,7 +187,25 @@ body {
     linear-gradient(90deg, rgba(0, 245, 255, 0.04) 1px, transparent 1px);
   background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
   animation: gridPulse 12s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+// Additional grid overlay for content area
+.content-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 0, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 110, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridPulse 15s ease-in-out infinite reverse;
   z-index: 1;
+  pointer-events: none;
 }
 
 .App::after {
